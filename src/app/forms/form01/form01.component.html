@@ -1,0 +1,22 @@
+<form #form01 = 'ngForm' (ngSubmit) ='recibirDatos(username,userpass)'>
+  <h2>User Details</h2>
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput [placeholder]='placeholders.username' #username>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input type=password [placeholder]='placeholders.password' matInput #userpass>
+  </mat-form-field>
+  <button mat-raised-button color='primary' type='submit' #sendButton>Aceptar</button>
+
+  <ng-container *ngIf="(receivedName >'' && receivedPassword >''); else faltanDatos ">
+    Usuario: {{receivedName}}
+    <br>
+    Password: {{receivedPassword}}
+  </ng-container>
+  <ng-template #faltanDatos>
+    <p>Falta el usuario, la clave o ambos</p>
+  </ng-template>
+</form>
+
