@@ -1,0 +1,34 @@
+<div class="example-container">
+  <h2>User details</h2>
+  <form #form02="ngForm" (ngSubmit)='createUser(form02)'>
+    <mat-form-field appearance="fill">
+      <mat-label>Username</mat-label>
+      <input matInput [placeholder]="placeholders.username" #username name='username' ngModel>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" #userpass name='userpass' ngModel>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button class="submit-btn" color="primary" mat-raised-button type="submit" #sendButton>
+      Aceptar
+    </button>
+  </form>
+  <ng-container *ngIf="(user.getUsername() > '' && user.getPassword() > ''); else faltanDatos">
+    El id de usuario es:
+    <strong>{{user.getId()}}</strong>
+    <br>
+    El nombre de usuario es:
+    <strong>{{user.getUsername()}}</strong>
+    <br>
+    La clave es:
+    <strong>{{user.getPassword()}}</strong>
+  </ng-container>
+  <ng-template #faltanDatos>
+    Falta el nombre de usuario, la clave o ambos.
+  </ng-template><!-- todo: remove this: {{username.name}} -->
+</div>
