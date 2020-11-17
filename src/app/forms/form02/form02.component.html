@@ -3,7 +3,12 @@
   <form #form02="ngForm" (ngSubmit)='createUser(form02)'>
     <mat-form-field appearance="fill">
       <mat-label>Username</mat-label>
-      <input matInput [placeholder]="placeholders.username" #username name='username' ngModel>
+      <input matInput
+      [placeholder]="placeholders.username"
+      #username name='username'
+      ngModel
+      required
+      minlength="5">
     </mat-form-field>
     <br>
     <mat-form-field appearance="fill">
@@ -13,6 +18,17 @@
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Address</mat-label>
+    <input matInput #address>
+    <input matInput [type]="hide ? 'password' : 'text'" #userpass name='userpass' ngModel>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+
 
     <button class="submit-btn" color="primary" mat-raised-button type="submit" #sendButton>
       Aceptar
